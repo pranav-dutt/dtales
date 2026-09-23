@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#f4efe6;color:#0b1f18;font-family:Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#0c3a2d}a:hover{color:#b8566f}
+input,button{font-family:inherit}
+::placeholder{color:#8a948f}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+</style>
+</helmet>
+
+<div style="overflow-x:hidden">
+
+<!-- HERO -->
+<section data-screen-label="Hero" style="position:relative;background:#0c3a2d;color:#f4efe6;padding:22px clamp(18px,3vw,40px) clamp(56px,7vw,96px)">
+  <div style="max-width:1320px;margin:0 auto">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-bottom:22px;border-bottom:1px solid rgba(244,239,230,.14)">
+      <div style="display:flex;align-items:center;gap:12px">
+        <img src="https://cdn.shopify.com/s/files/1/0693/5668/3402/files/IMG_6076.jpg?v=1790166852&width=200" alt="D'Tales" style="width:46px;height:46px;border-radius:50%;background:#fff;object-fit:cover"></img>
+        <div style="line-height:1.25"><div style="font-weight:800;font-size:14px;letter-spacing:.08em">D'TALES</div><div style="font-size:12px;opacity:.65">Dental &amp; Derma · Thane West</div></div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:flex-end;gap:12px 20px;flex-wrap:wrap;margin-left:auto">
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600"><span style="color:#e2b95f;letter-spacing:1px">★★★★★</span><span style="opacity:.85">4.8 on Google · 366 reviews</span></div>
+        <a href="tel:+918591047979" style="color:#0c3a2d;background:#f4efe6;text-decoration:none;font-weight:800;font-size:13px;padding:11px 18px;border-radius:999px" style-hover="background:#fff;color:#0c3a2d">+91 85910 47979</a>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,500px),1fr));gap:clamp(36px,5vw,72px);align-items:center;padding-top:clamp(36px,5vw,64px)">
+      <div>
+        <div style="display:flex;align-items:center;gap:12px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;color:#eab3c4;margin-bottom:26px"><span style="width:28px;height:1px;background:#eab3c4"></span>SMILE DESIGN BY DR. SNEHA GALA</div>
+        <h1 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(54px,7.6vw,112px);line-height:.92;letter-spacing:-.02em;margin:0 0 26px;text-wrap:balance">Your new smile,<br><em style="color:#eab3c4">ready in 24 hours.</em></h1>
+        <p style="font-size:clamp(16px,1.35vw,19px);line-height:1.6;color:rgba(244,239,230,.78);margin:0 0 34px;max-width:500px;text-wrap:pretty">Gaps, chips, stains and uneven teeth — redesigned to suit your face. No braces. No months of waiting. One day.</p>
+
+        <form onSubmit="{{ submit }}" style="background:#f4efe6;border-radius:22px;padding:8px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:6px;max-width:580px;box-shadow:0 24px 60px rgba(0,0,0,.28)">
+          <input required="" value="{{ name }}" onChange="{{ setName }}" placeholder="Your name" style="border:0;background:#fff;border-radius:16px;padding:18px 18px;font-size:16px;color:#0b1f18;outline:none"></input>
+          <input required="" type="tel" inputMode="numeric" pattern="[0-9 +]{10,14}" value="{{ phone }}" onChange="{{ setPhone }}" placeholder="Mobile number" style="border:0;background:#fff;border-radius:16px;padding:18px 18px;font-size:16px;color:#0b1f18;outline:none"></input>
+          <button type="submit" style="border:0;cursor:pointer;background:#b8566f;color:#fff;border-radius:16px;padding:18px 22px;font-size:15px;font-weight:800;text-align:center" style-hover="background:#a2475f">{{ heroCta }}</button>
+        </form>
+        <div style="display:flex;gap:22px;flex-wrap:wrap;margin-top:18px;font-size:13px;color:rgba(244,239,230,.7)">
+          <span>✓ Free expert consultation</span><span>✓ Transparent pricing</span><span>✓ EMI available</span>
+        </div>
+      </div>
+
+      <div style="position:relative;width:100%;max-width:min(560px,62vh);margin:0 auto">
+        <div ref="{{ heroRef }}" onPointerDown="{{ heroDown }}" onPointerMove="{{ heroMove }}" style="position:relative;aspect-ratio:4/5;border-radius:28px;overflow:hidden;cursor:ew-resize;touch-action:pan-y;user-select:none;background:#123f32;box-shadow:0 40px 90px rgba(0,0,0,.4)">
+          <img src="{{ heroCase.src }}" alt="After" draggable="false" style="position:absolute;top:0;left:-100%;width:200%;height:100%;max-width:none;object-fit:cover;pointer-events:none"></img>
+          <div style="position:absolute;inset:0;clip-path:inset(0 {{ heroClip }}% 0 0)">
+            <img src="{{ heroCase.src }}" alt="Before" draggable="false" style="position:absolute;top:0;left:0;width:200%;height:100%;max-width:none;object-fit:cover;pointer-events:none"></img>
+          </div>
+          <div style="position:absolute;top:0;bottom:0;left:{{ heroPos }}%;width:2px;margin-left:-1px;background:#fff;pointer-events:none">
+            <div style="position:absolute;top:50%;left:50%;width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;background:#fff;color:#0c3a2d;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;box-shadow:0 8px 24px rgba(0,0,0,.3)">‹ ›</div>
+          </div>
+          <span style="position:absolute;top:18px;left:18px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;background:rgba(11,31,24,.7);backdrop-filter:blur(6px);color:#fff;padding:8px 12px;border-radius:999px;pointer-events:none">BEFORE</span>
+          <span style="position:absolute;top:18px;right:18px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;background:#eab3c4;color:#0c3a2d;padding:8px 12px;border-radius:999px;pointer-events:none">AFTER · 24H</span>
+        </div>
+        <div style="position:absolute;left:clamp(-8px,-2vw,-28px);bottom:28px;background:#f4efe6;color:#0b1f18;border-radius:18px;padding:16px 18px;box-shadow:0 20px 50px rgba(0,0,0,.3);max-width:250px;display:flex;flex-direction:column;gap:6px">
+          <div style="font-family:'Instrument Serif',serif;font-size:22px;line-height:1.1">“Best doctor, good staff. 10/10.”</div>
+          <div style="font-size:12px;color:#5d6a64"><span style="color:#d49b2f">★★★★★</span> Verified Google review</div>
+        </div>
+        <div style="text-align:center;margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;color:rgba(244,239,230,.55)">DRAG TO COMPARE</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<section style="background:#0b1f18;color:#f4efe6;padding:22px 0;overflow:hidden">
+  <div style="display:flex;width:max-content;animation:marq 38s linear infinite">
+    <sc-for list="{{ marquee }}" as="m" hint-placeholder-count="12">
+      <div style="display:flex;align-items:center;gap:18px;padding:0 28px;white-space:nowrap;font-family:'Instrument Serif',serif;font-size:26px">{{ m }}<span style="color:#eab3c4;font-size:16px">✦</span></div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section id="results" data-screen-label="Results" style="padding:clamp(72px,9vw,128px) clamp(18px,3vw,40px)">
+  <div style="max-width:1320px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:end;margin-bottom:48px">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;color:#b8566f;margin-bottom:16px">01 — REAL TRANSFORMATIONS</div>
+        <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,5.6vw,84px);line-height:.95;letter-spacing:-.015em;margin:0">Real patients.<br><em>Real Thane smiles.</em></h2>
+      </div>
+      <p style="font-size:17px;line-height:1.6;color:#4a5852;margin:0;max-width:440px;justify-self:end;text-wrap:pretty">Every smile below was designed and delivered at our Ram Maruti Road clinic. Pick a case and drag to see the difference.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(24px,3vw,48px);align-items:start">
+      <div ref="{{ caseRef }}" onPointerDown="{{ caseDown }}" onPointerMove="{{ caseMove }}" style="position:relative;aspect-ratio:{{ activeCase.ratio }};border-radius:28px;overflow:hidden;cursor:ew-resize;touch-action:pan-y;user-select:none;background:#e6dfd2">
+        <img src="{{ activeCase.src }}" alt="After" draggable="false" style="position:absolute;max-width:none;object-fit:cover;pointer-events:none;top:{{ activeCase.aTop }};left:{{ activeCase.aLeft }};width:{{ activeCase.w }};height:{{ activeCase.h }}"></img>
+        <div style="position:absolute;inset:0;clip-path:{{ caseClip }}">
+          <img src="{{ activeCase.src }}" alt="Before" draggable="false" style="position:absolute;top:0;left:0;max-width:none;object-fit:cover;pointer-events:none;width:{{ activeCase.w }};height:{{ activeCase.h }}"></img>
+        </div>
+        <div style="position:absolute;pointer-events:none;background:#fff;{{ caseLine }}"></div>
+        <span style="position:absolute;top:18px;left:18px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;background:rgba(11,31,24,.7);color:#fff;padding:8px 12px;border-radius:999px;pointer-events:none">BEFORE</span>
+        <span style="position:absolute;bottom:18px;right:18px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;background:#eab3c4;color:#0c3a2d;padding:8px 12px;border-radius:999px;pointer-events:none">AFTER</span>
+      </div>
+
+      <div style="display:flex;flex-direction:column">
+        <sc-for list="{{ cases }}" as="c" hint-placeholder-count="6">
+          <button onClick="{{ c.pick }}" style="display:grid;grid-template-columns:64px 1fr auto;gap:18px;align-items:center;text-align:left;background:{{ c.bg }};border:0;border-top:1px solid #ddd5c6;padding:16px 14px;cursor:pointer;color:#0b1f18;border-radius:{{ c.radius }}" style-hover="background:#ece5d8">
+            <img src="{{ c.thumb }}" alt="" style="width:64px;height:64px;border-radius:14px;object-fit:cover"></img>
+            <div>
+              <div style="font-family:'Instrument Serif',serif;font-size:26px;line-height:1.05">{{ c.title }}</div>
+              <div style="font-size:13px;color:#5d6a64;margin-top:4px">{{ c.sub }}</div>
+            </div>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:{{ c.tagColor }}">{{ c.num }}</span>
+          </button>
+        </sc-for>
+        <a href="#book" style="margin-top:22px;align-self:flex-start;background:#0c3a2d;color:#f4efe6;text-decoration:none;font-weight:800;font-size:15px;padding:18px 26px;border-radius:999px" style-hover="background:#134d3c;color:#f4efe6">I want a smile like this →</a>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px;margin-top:clamp(40px,5vw,64px)">
+      <sc-for list="{{ more }}" as="r" hint-placeholder-count="4">
+        <figure style="margin:0;position:relative;border-radius:22px;overflow:hidden;aspect-ratio:1/1;background:#e6dfd2">
+          <img src="{{ r.src }}" alt="{{ r.t }}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></img>
+          <figcaption style="position:absolute;left:12px;bottom:12px;right:12px;background:rgba(244,239,230,.94);backdrop-filter:blur(6px);border-radius:14px;padding:10px 14px;font-weight:700;font-size:14px">{{ r.t }}</figcaption>
+        </figure>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section data-screen-label="Why smile design" style="padding:0 clamp(18px,3vw,40px) clamp(72px,9vw,128px)">
+  <div style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:clamp(32px,5vw,80px);align-items:start">
+    <div style="position:sticky;top:40px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;color:#b8566f;margin-bottom:16px">02 — WHY SMILE DESIGN</div>
+      <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,5.6vw,84px);line-height:.95;letter-spacing:-.015em;margin:0 0 22px">Months of braces,<br>or <em style="color:#b8566f">one day?</em></h2>
+      <p style="font-size:17px;line-height:1.6;color:#4a5852;margin:0 0 28px;max-width:460px;text-wrap:pretty">Smile design corrects colour, shape, size and gaps together — so your smile looks naturally yours, only better.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <sc-for list="{{ problems }}" as="p" hint-placeholder-count="6">
+          <span style="border:1px solid #cfc6b5;border-radius:999px;padding:10px 16px;font-size:14px;font-weight:600">{{ p }}</span>
+        </sc-for>
+      </div>
+    </div>
+    <div style="background:#fff;border-radius:28px;overflow:hidden;box-shadow:0 30px 70px rgba(12,58,45,.08)">
+      <div style="display:grid;grid-template-columns:1.1fr 1fr 1fr;background:#0c3a2d;color:#f4efe6">
+        <div style="padding:22px 22px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;opacity:.6">COMPARE</div>
+        <div style="padding:22px 16px;font-family:'Instrument Serif',serif;font-size:24px;background:#b8566f">Smile design</div>
+        <div style="padding:22px 16px;font-family:'Instrument Serif',serif;font-size:24px;opacity:.75">Braces</div>
+      </div>
+      <sc-for list="{{ compare }}" as="r" hint-placeholder-count="5">
+        <div style="display:grid;grid-template-columns:1.1fr 1fr 1fr;border-top:1px solid #eee7da;align-items:center">
+          <div style="padding:20px 22px;font-size:14px;font-weight:700;color:#4a5852">{{ r.k }}</div>
+          <div style="padding:20px 16px;font-size:16px;font-weight:800;color:#0c3a2d;background:#fbf1f4">{{ r.a }}</div>
+          <div style="padding:20px 16px;font-size:15px;color:#6f7b75">{{ r.b }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section data-screen-label="Process" style="background:#0c3a2d;color:#f4efe6;padding:clamp(72px,9vw,128px) clamp(18px,3vw,40px)">
+  <div style="max-width:1320px;margin:0 auto">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;color:#eab3c4;margin-bottom:16px">03 — YOUR 24 HOURS</div>
+    <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,5.6vw,84px);line-height:.95;letter-spacing:-.015em;margin:0 0 clamp(40px,6vw,80px);max-width:820px">From first hello to <em style="color:#eab3c4">new smile.</em></h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:0">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+        <div style="position:relative;padding:0 28px 0 0">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:28px">
+            <span style="width:14px;height:14px;border-radius:50%;background:{{ s.dot }};flex:0 0 auto;box-shadow:0 0 0 6px rgba(234,179,196,.14)"></span>
+            <span style="flex:1;height:1px;background:rgba(244,239,230,.22)"></span>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;color:#eab3c4;margin-bottom:12px">{{ s.h }}</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:32px;line-height:1.05;margin-bottom:12px">{{ s.t }}</div>
+          <div style="font-size:15px;line-height:1.6;color:rgba(244,239,230,.7);padding-bottom:36px">{{ s.d }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEOS -->
+<section data-screen-label="Video stories" style="background:#0b1f18;color:#f4efe6;padding:clamp(72px,9vw,128px) 0">
+  <div style="max-width:1320px;margin:0 auto;padding:0 clamp(18px,3vw,40px);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:40px">
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;color:#eab3c4;margin-bottom:16px">04 — PATIENT STORIES</div>
+      <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,5.6vw,84px);line-height:.95;letter-spacing:-.015em;margin:0">Don't take our word.<br><em style="color:#eab3c4">Take theirs.</em></h2>
+    </div>
+    <div style="font-size:14px;color:rgba(244,239,230,.6)">Swipe →</div>
+  </div>
+  <div style="display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:0 max(clamp(18px,3vw,40px),calc((100vw - 1320px)/2 + 40px)) 8px">
+    <sc-for list="{{ videos }}" as="v" hint-placeholder-count="6">
+      <div style="position:relative;flex:0 0 auto;width:min(70vw,290px);aspect-ratio:9/16;scroll-snap-align:start;border-radius:26px;overflow:hidden;background:#123f32">
+        <video id="{{ v.id }}" src="{{ v.src }}" playsInline="" preload="metadata" controls="{{ v.controls }}" onPlay="{{ v.onPlay }}" style="display:block;width:100%;height:100%;object-fit:cover"></video>
+        <sc-if value="{{ v.showCover }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ v.play }}" style="position:absolute;inset:0;border:0;cursor:pointer;background:linear-gradient(180deg,rgba(11,31,24,0) 45%,rgba(11,31,24,.85));display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:22px;color:#fff;text-align:left">
+            <span style="position:absolute;top:50%;left:50%;width:68px;height:68px;margin:-34px 0 0 -34px;border-radius:50%;background:rgba(244,239,230,.95);color:#0c3a2d;display:flex;align-items:center;justify-content:center;font-size:20px;padding-left:4px">▶</span>
+            <span style="color:#e2b95f;font-size:13px;letter-spacing:1px">★★★★★</span>
+            <span style="font-family:'Instrument Serif',serif;font-size:24px;line-height:1.1;margin-top:6px">{{ v.t }}</span>
+          </button>
+        </sc-if>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- DOCTOR + REVIEWS -->
+<section data-screen-label="Doctor & reviews" style="padding:clamp(72px,9vw,128px) clamp(18px,3vw,40px)">
+  <div style="max-width:1320px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(32px,5vw,80px);align-items:center;margin-bottom:clamp(56px,7vw,96px)">
+      <div style="width:100%;max-width:480px;margin:0 auto;aspect-ratio:4/5;border-radius:28px;background:repeating-linear-gradient(135deg,#e6dfd2 0 12px,#ede7dc 12px 24px);display:flex;align-items:flex-end;justify-content:flex-start;padding:22px;position:relative">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6f7b75;background:#f4efe6;padding:8px 12px;border-radius:8px">Dr. Sneha Gala — portrait</span>
+        <img src="https://cdn.shopify.com/s/files/1/0693/5668/3402/files/IMG_6076.jpg?v=1790166852&width=300" alt="" style="position:absolute;right:-18px;top:28px;width:110px;height:110px;border-radius:50%;background:#fff;object-fit:cover;box-shadow:0 16px 40px rgba(12,58,45,.18)"></img>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;color:#b8566f;margin-bottom:16px">05 — MEET YOUR SMILE EXPERT</div>
+        <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,5.6vw,84px);line-height:.95;letter-spacing:-.015em;margin:0 0 22px">Dr. Sneha Gala</h2>
+        <p style="font-family:'Instrument Serif',serif;font-size:clamp(22px,2vw,28px);line-height:1.3;margin:0 0 20px;color:#0c3a2d;text-wrap:pretty">“A smile isn't just teeth. It has to suit the face, the lips, the person — that's what we design.”</p>
+        <p style="font-size:16px;line-height:1.65;color:#4a5852;margin:0 0 30px;max-width:520px;text-wrap:pretty">Smile expert for implants, dentures and aesthetic dentistry at D'Tales Divine Happy Gold Smile, Thane West — with digital planning and a strict hygiene protocol for every procedure.</p>
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#ddd5c6;border-radius:18px;overflow:hidden;max-width:520px">
+          <div style="background:#f4efe6;padding:18px"><div style="font-family:'Instrument Serif',serif;font-size:38px;line-height:1">4.8★</div><div style="font-size:12px;color:#5d6a64;margin-top:6px">Google, 366 reviews</div></div>
+          <div style="background:#f4efe6;padding:18px"><div style="font-family:'Instrument Serif',serif;font-size:38px;line-height:1">5.0★</div><div style="font-size:12px;color:#5d6a64;margin-top:6px">Practo &amp; Justdial</div></div>
+          <div style="background:#f4efe6;padding:18px"><div style="font-family:'Instrument Serif',serif;font-size:38px;line-height:1">12+</div><div style="font-size:12px;color:#5d6a64;margin-top:6px">Years of practice</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
+      <sc-for list="{{ reviews }}" as="q" hint-placeholder-count="3">
+        <div style="background:#fff;border-radius:24px;padding:30px;display:flex;flex-direction:column;gap:22px;justify-content:space-between">
+          <div style="font-family:'Instrument Serif',serif;font-size:26px;line-height:1.2">“{{ q.t }}”</div>
+          <div style="display:flex;align-items:center;gap:12px;border-top:1px solid #eee7da;padding-top:18px">
+            <span style="width:38px;height:38px;border-radius:50%;background:#0c3a2d;color:#f4efe6;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px">{{ q.i }}</span>
+            <div style="font-size:13px;line-height:1.35"><div style="font-weight:700">{{ q.src }}</div><div style="color:#d49b2f">★★★★★</div></div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- OTHER TREATMENTS -->
+<section data-screen-label="Other treatments" style="padding:0 clamp(18px,3vw,40px) clamp(72px,9vw,128px)">
+  <div style="max-width:1320px;margin:0 auto">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:36px">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;color:#b8566f;margin-bottom:16px">06 — ALSO AT D'TALES</div>
+        <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(40px,4.6vw,68px);line-height:.95;margin:0">Missing teeth? <em>We rebuild those too.</em></h2>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px">
+      <sc-for list="{{ offers }}" as="o" hint-placeholder-count="4">
+        <a href="#book" onClick="{{ o.pick }}" style="display:flex;flex-direction:column;border-radius:24px;overflow:hidden;background:#fff;text-decoration:none;color:#0b1f18" style-hover="color:#0b1f18;box-shadow:0 24px 50px rgba(12,58,45,.12)">
+          <img src="{{ o.src }}" alt="{{ o.t }}" loading="lazy" style="display:block;width:100%;aspect-ratio:1/1;object-fit:cover;object-position:top"></img>
+          <div style="padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px">
+            <div><div style="font-family:'Instrument Serif',serif;font-size:24px;line-height:1.05">{{ o.t }}</div><div style="font-size:13px;color:#5d6a64;margin-top:4px">{{ o.d }}</div></div>
+            <span style="width:40px;height:40px;border-radius:50%;background:#f4efe6;display:flex;align-items:center;justify-content:center;flex:0 0 auto">→</span>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section data-screen-label="FAQ" style="padding:0 clamp(18px,3vw,40px) clamp(72px,9vw,128px)">
+  <div style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(32px,5vw,80px);align-items:start">
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;color:#b8566f;margin-bottom:16px">07 — BEFORE YOU BOOK</div>
+      <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,5.6vw,84px);line-height:.95;margin:0 0 28px">Good questions.</h2>
+      <div style="background:#fff;border-radius:22px;padding:24px;max-width:400px">
+        <div style="font-weight:800;margin-bottom:6px">Still unsure?</div>
+        <div style="font-size:15px;color:#4a5852;line-height:1.55;margin-bottom:16px">Send a photo of your smile on WhatsApp — Dr. Gala's team will tell you what's possible.</div>
+        <a href="{{ waLink }}" target="_blank" style="display:inline-block;background:#25d366;color:#06331a;text-decoration:none;font-weight:800;font-size:14px;padding:14px 20px;border-radius:999px" style-hover="color:#06331a;background:#3ee07c">Send on WhatsApp</a>
+      </div>
+    </div>
+    <div style="border-top:1px solid #cfc6b5">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
+        <div style="border-bottom:1px solid #cfc6b5">
+          <button onClick="{{ f.toggle }}" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;text-align:left;background:none;border:0;cursor:pointer;padding:26px 0;color:#0b1f18">
+            <span style="font-family:'Instrument Serif',serif;font-size:clamp(24px,2.2vw,30px);line-height:1.1">{{ f.q }}</span>
+            <span style="width:40px;height:40px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-size:20px;background:{{ f.bg }};color:{{ f.fg }}">{{ f.icon }}</span>
+          </button>
+          <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:0 60px 26px 0;font-size:16px;line-height:1.65;color:#4a5852">{{ f.a }}</div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL FORM -->
+<section id="book" data-screen-label="Book" style="padding:0 clamp(12px,2vw,24px) clamp(110px,10vw,140px)">
+  <div style="max-width:1360px;margin:0 auto;background:#0c3a2d;color:#f4efe6;border-radius:36px;padding:clamp(36px,6vw,88px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(36px,5vw,80px);align-items:center">
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;color:#eab3c4;margin-bottom:18px">FREE EXPERT CONSULTATION</div>
+      <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(48px,6vw,96px);line-height:.92;letter-spacing:-.02em;margin:0 0 24px;text-wrap:balance">Tomorrow, smile in <em style="color:#eab3c4">every photo.</em></h2>
+      <div style="font-size:15px;line-height:1.7;color:rgba(244,239,230,.72)">Shop 4B, Ground Floor, Laxmi Keshav CHS,<br>Ram Maruti Rd, Naupada, Thane West 400602</div>
+      <div style="display:flex;gap:18px;margin-top:18px;flex-wrap:wrap">
+        <a href="https://share.google/0yewz0GwcaDb1cUmh" target="_blank" style="color:#eab3c4;font-weight:700;font-size:14px">Get directions →</a>
+        <a href="tel:+918591047979" style="color:#eab3c4;font-weight:700;font-size:14px">+91 85910 47979</a>
+      </div>
+    </div>
+    <div style="background:#f4efe6;color:#0b1f18;border-radius:28px;padding:clamp(24px,3vw,40px)">
+      <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:14px;padding:20px 0">
+          <div style="width:56px;height:56px;border-radius:50%;background:#0c3a2d;color:#f4efe6;display:flex;align-items:center;justify-content:center;font-size:24px">✓</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:40px;line-height:1">You're booked in, {{ firstName }}.</div>
+          <div style="font-size:16px;line-height:1.55;color:#4a5852">Our team will call you shortly to confirm your slot. Want a faster reply? Send it on WhatsApp.</div>
+          <a href="{{ waLink }}" target="_blank" style="align-self:flex-start;background:#25d366;color:#06331a;text-decoration:none;font-weight:800;padding:16px 24px;border-radius:999px" style-hover="color:#06331a">Continue on WhatsApp →</a>
+        </div>
+      </sc-if>
+      <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ submit }}" style="display:flex;flex-direction:column;gap:16px">
+          <div style="font-family:'Instrument Serif',serif;font-size:32px;line-height:1">Book your free visit</div>
+          <input required="" value="{{ name }}" onChange="{{ setName }}" placeholder="Full name" style="font-size:16px;padding:18px;border:1.5px solid #ddd5c6;border-radius:16px;background:#fff;outline:none;color:#0b1f18" style-focus="border-color:#0c3a2d"></input>
+          <input required="" type="tel" inputMode="numeric" pattern="[0-9 +]{10,14}" value="{{ phone }}" onChange="{{ setPhone }}" placeholder="Mobile number" style="font-size:16px;padding:18px;border:1.5px solid #ddd5c6;border-radius:16px;background:#fff;outline:none;color:#0b1f18" style-focus="border-color:#0c3a2d"></input>
+          <div style="font-size:13px;font-weight:700;color:#4a5852">What would you like to fix?</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ concerns }}" as="c" hint-placeholder-count="5">
+              <button type="button" onClick="{{ c.pick }}" style="font-size:14px;font-weight:600;padding:11px 16px;border-radius:999px;cursor:pointer;border:1.5px solid {{ c.border }};background:{{ c.bg }};color:{{ c.fg }}">{{ c.label }}</button>
+            </sc-for>
+          </div>
+          <button type="submit" style="margin-top:6px;background:#b8566f;color:#fff;border:0;font-size:17px;font-weight:800;padding:20px;border-radius:16px;cursor:pointer" style-hover="background:#a2475f">Book my free consultation</button>
+          <div style="font-size:12px;color:#6f7b75;text-align:center">No spam. We only call to confirm your slot.</div>
+        </form>
+      </sc-if>
+    </div>
+  </div>
+</section>
+
+<!-- STICKY BAR -->
+<div style="position:fixed;left:0;right:0;bottom:0;z-index:50;padding:12px 12px calc(12px + env(safe-area-inset-bottom));display:flex;justify-content:center;pointer-events:none;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .3s;transform:translateY({{ barY }});opacity:{{ barO }}">
+  <div style="pointer-events:auto;display:flex;align-items:center;gap:6px;width:100%;max-width:620px;background:rgba(11,31,24,.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(244,239,230,.12);border-radius:999px;padding:6px;box-shadow:0 20px 50px rgba(0,0,0,.35)">
+    <div style="flex:1 1 auto;min-width:0;padding:0 12px;color:#f4efe6;line-height:1.2;overflow:hidden">
+      <div style="font-size:13px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Free smile consultation</div>
+      <div style="font-size:11px;color:#e2b95f;white-space:nowrap">★ 4.8 · 366 reviews</div>
+    </div>
+    <a href="tel:+918591047979" aria-label="Call" style="flex:0 0 auto;width:48px;height:48px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(244,239,230,.1);color:#f4efe6;text-decoration:none;font-size:18px" style-hover="color:#f4efe6;background:rgba(244,239,230,.18)">✆</a>
+    <a href="{{ waLink }}" target="_blank" style="flex:0 0 auto;height:48px;display:flex;align-items:center;justify-content:center;padding:0 16px;border-radius:999px;background:#25d366;color:#06331a;text-decoration:none;font-weight:800;font-size:14px" style-hover="color:#06331a">WhatsApp</a>
+    <a href="#book" style="flex:0 0 auto;height:48px;display:flex;align-items:center;justify-content:center;padding:0 20px;border-radius:999px;background:#eab3c4;color:#0c3a2d;text-decoration:none;font-weight:800;font-size:14px;white-space:nowrap" style-hover="color:#0c3a2d;background:#f2c7d4">Book</a>
+  </div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;whatsapp&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;918591047979&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { name: '', phone: '', concern: 'Smile design', submitted: false, open: 0, heroPos: 50, casePos: 50, caseIdx: 0, playing: {}, showBar: false };
+  B = 'https://cdn.shopify.com/s/files/1/0693/5668/3402/files/';
+  heroRef = React.createRef();
+  caseRef = React.createRef();
+  img(f, w = 900) { return this.B + f + '?width=' + w; }
+  wa(msg) {
+    const n = (this.props.whatsapp ?? '918591047979').replace(/\D/g, '');
+    return 'https://wa.me/' + n + '?text=' + encodeURIComponent(msg);
+  }
+  componentDidMount() {
+    this.onScroll = () => { const s = window.scrollY > 520; if (s !== this.state.showBar) this.setState({ showBar: s }); };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onScroll();
+  }
+  componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); }
+  slide(ref, key, vertical) {
+    return e => {
+      if (e.type === 'pointermove' && e.buttons !== 1 && e.pointerType === 'mouse') return;
+      const r = ref.current.getBoundingClientRect();
+      const p = vertical ? (e.clientY - r.top) / r.height : (e.clientX - r.left) / r.width;
+      this.setState({ [key]: Math.max(2, Math.min(98, p * 100)) });
+    };
+  }
+  renderVals() {
+    const s = this.state;
+    const cases = [
+      { f: 'IMG_3445.jpg', t: 'Gap & shape correction', d: 'Front teeth reshaped · 24 hr', v: false },
+      { f: 'IMG_3080.jpg', t: 'Even, brighter smile', d: 'Colour + alignment · 24 hr', v: false },
+      { f: 'IMG_3502.jpg', t: 'Front teeth redesign', d: 'Natural shade match · 24 hr', v: false },
+      { f: 'IMG_3501.jpg', t: 'Midline gap closed', d: 'Close-up · smile design', v: true },
+      { f: 'IMG_3115.jpg', t: 'Alignment & colour', d: 'Close-up · smile design', v: true },
+      { f: 'IMG_3358.jpg', t: 'Full smile restored', d: 'Full-mouth rehabilitation', v: false },
+    ];
+    const ac = cases[s.caseIdx];
+    const cp = s.casePos;
+    const activeCase = ac.v
+      ? { src: this.img(ac.f, 1200), ratio: '4/3', w: '100%', h: '200%', aTop: '-100%', aLeft: '0' }
+      : { src: this.img(ac.f, 1200), ratio: '4/5', w: '200%', h: '100%', aTop: '0', aLeft: '-100%' };
+    const concerns = ['Smile design', 'Gaps', 'Stained / chipped', 'Missing teeth', 'Dentures'];
+    const faqs = [
+      ['Is it really done in 24 hours?', 'For most smile design cases, yes. After your consultation and planning, your new smile is fitted the next day. Dr. Gala confirms your exact timeline at the first visit.'],
+      ['Will it hurt?', 'The procedure is minimally invasive and done under local anaesthesia where needed. Most patients describe it as comfortable.'],
+      ['Will it look fake?', 'No. Each smile is designed around your face shape, lips and skin tone, with a shade chosen to look like your own teeth — only better.'],
+      ['How much does it cost?', 'It depends on how many teeth are involved and the material chosen. You get a clear, itemised quote at the free consultation, with easy EMI options.'],
+      ['How long does it last?', 'With normal brushing and regular check-ups, a well-made smile design lasts for many years. We guide you on aftercare.'],
+    ];
+    const vids = [
+      ['95e68abebb1d42a1b15276b266890ad5.mov', 'Finally confident to smile'],
+      ['386abed6962440af87f4c9bec852a215.mp4', 'Painless and so quick'],
+      ['db59238dac3d46c294f119fe6adb24cd.mp4', 'Looks completely natural'],
+      ['9907e8cdaa38478e88f307e85c579d1b.mp4', 'Best dental experience'],
+      ['f20cd2eec8354972975648e03babb2ec.mov', 'Caring doctor & staff'],
+      ['5992dc6b4f3340b687302536412166d7.mp4', 'My new smile in a day'],
+    ];
+    return {
+      name: s.name, phone: s.phone, submitted: s.submitted, notSubmitted: !s.submitted,
+      heroCta: s.submitted ? 'Request sent ✓' : 'Book free visit',
+      firstName: (s.name || '').split(' ')[0] || 'there',
+      waLink: this.wa(s.submitted ? `Hi, I'm ${s.name} (${s.phone}). I'd like a free consultation for ${s.concern}.` : "Hi D'Tales, I'd like to book a free smile design consultation."),
+      setName: e => this.setState({ name: e.target.value }),
+      setPhone: e => this.setState({ phone: e.target.value }),
+      submit: e => { e.preventDefault(); this.setState({ submitted: true }); },
+      heroRef: this.heroRef, heroPos: s.heroPos, heroClip: 100 - s.heroPos,
+      heroCase: { src: this.img('IMG_3080.jpg', 1200) },
+      heroDown: this.slide(this.heroRef, 'heroPos', false), heroMove: this.slide(this.heroRef, 'heroPos', false),
+      caseRef: this.caseRef, activeCase,
+      caseClip: ac.v ? `inset(0 0 ${100 - cp}% 0)` : `inset(0 ${100 - cp}% 0 0)`,
+      caseLine: ac.v ? `left:0;right:0;height:2px;top:${cp}%;margin-top:-1px` : `top:0;bottom:0;width:2px;left:${cp}%;margin-left:-1px`,
+      caseDown: this.slide(this.caseRef, 'casePos', ac.v), caseMove: this.slide(this.caseRef, 'casePos', ac.v),
+      cases: cases.map((c, i) => ({
+        title: c.t, sub: c.d, thumb: this.img(c.f, 200), num: String(i + 1).padStart(2, '0'),
+        bg: i === s.caseIdx ? '#fff' : 'transparent', radius: i === s.caseIdx ? '16px' : '0',
+        tagColor: i === s.caseIdx ? '#b8566f' : '#9aa39e',
+        pick: () => this.setState({ caseIdx: i, casePos: 50 }),
+      })),
+      more: [['IMG_6749.jpg', 'Chipped teeth restored'], ['IMG_3559.jpg', 'Three smile makeovers'], ['IMG_3750.jpg', 'Worn teeth rebuilt'], ['IMG_7240.jpg', 'Full-mouth fixed implants']].map(m => ({ src: this.img(m[0], 700), t: m[1] })),
+      marquee: [...Array(2)].flatMap(() => ['Smile design in 24 hours', '4.8★ Google · 366 reviews', 'Free expert consultation', 'Easy EMI options', '5.0★ Practo & Justdial', 'Ram Maruti Rd, Thane West']),
+      problems: ['Gaps', 'Chipped teeth', 'Yellow / stained', 'Uneven size', 'Worn edges', 'Old fillings'],
+      compare: [
+        { k: 'Time to result', a: '24 hours', b: '12–24 months' },
+        { k: 'Fixes colour & shape', a: 'Yes', b: 'No' },
+        { k: 'Visible wires', a: 'None', b: 'Yes' },
+        { k: 'Clinic visits', a: '2', b: 'Monthly' },
+        { k: 'Designed to your face', a: 'Yes', b: 'Partly' },
+      ],
+      steps: [
+        { h: 'HOUR 0', t: 'Free consultation', d: 'Smile assessment, photos and a clear plan with pricing — no obligation.', dot: '#eab3c4' },
+        { h: 'HOUR 1', t: 'Digital smile design', d: 'Shape, size and shade planned around your face, lips and skin tone.', dot: '#eab3c4' },
+        { h: 'HOUR 2', t: 'Gentle preparation', d: 'Minimal, comfortable preparation in a single sitting.', dot: '#eab3c4' },
+        { h: 'HOUR 24', t: 'Your new smile', d: 'Fitted, polished and checked. Ready for every photo.', dot: '#e2b95f' },
+      ],
+      videos: vids.map((v, i) => ({
+        id: 'dtv' + i, t: v[1], src: 'https://cdn.shopify.com/videos/c/o/v/' + v[0] + '#t=0.5',
+        showCover: !s.playing[i], controls: !!s.playing[i],
+        onPlay: () => { if (!s.playing[i]) this.setState(st => ({ playing: { ...st.playing, [i]: true } })); },
+        play: () => { this.setState(st => ({ playing: { ...st.playing, [i]: true } })); const el = document.getElementById('dtv' + i); el && el.play(); },
+      })),
+      reviews: [
+        { t: 'Excellent staff, service, and ease of scheduling… highly recommend.', src: 'Google review', i: 'G' },
+        { t: 'Very nice place, best doctor, good staff. 10/10 rate.', src: 'Google review', i: 'G' },
+        { t: 'Very professional, clinic very clean and hygienic. Treatment is very effective.', src: 'Justdial review', i: 'J' },
+      ],
+      offers: [
+        ['IMG_3449.jpg', 'Gap closure', 'Confident smile in 1 day', 'Gaps'],
+        ['IMG_3441.jpg', 'Fixed implants', 'Full-mouth, natural bite', 'Missing teeth'],
+        ['IMG_3450.jpg', 'Flexible denture', 'Comfortable daily wear', 'Dentures'],
+        ['IMG_3442.jpg', 'Denture in 5 days', 'Quick, natural looking', 'Dentures'],
+      ].map(o => ({ src: this.img(o[0], 700), t: o[1], d: o[2], pick: () => this.setState({ concern: o[3] }) })),
+      concerns: concerns.map(c => {
+        const on = s.concern === c;
+        return { label: c, border: on ? '#0c3a2d' : '#ddd5c6', bg: on ? '#0c3a2d' : '#fff', fg: on ? '#f4efe6' : '#0b1f18', pick: () => this.setState({ concern: c }) };
+      }),
+      faqs: faqs.map((f, i) => ({ q: f[0], a: f[1], open: s.open === i, icon: s.open === i ? '−' : '+', bg: s.open === i ? '#0c3a2d' : '#e9e2d5', fg: s.open === i ? '#f4efe6' : '#0c3a2d', toggle: () => this.setState({ open: s.open === i ? -1 : i }) })),
+      barY: s.showBar ? '0' : '140%', barO: s.showBar ? 1 : 0,
+    };
+  }
+}
+</script>
+</body>
+</html>
